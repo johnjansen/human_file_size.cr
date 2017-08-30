@@ -1,6 +1,6 @@
 # human_file_size
 
-TODO: Write a description here
+serializes and deserializes file sizes (in human readable format), within json or yaml mappings
 
 ## Installation
 
@@ -9,24 +9,39 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   human_file_size:
-    github: [your-github-name]/human_file_size
+    github: johnjansen/human_file_size.cr
 ```
 
 ## Usage
 
 ```crystal
 require "human_file_size"
+
+class ConverterExample
+  getter :file_size
+
+  YAML.mapping(
+    file_size: {
+      type:      BigFloat,
+      converter: HumanFileSize,
+    }
+  )
+
+  JSON.mapping(
+    file_size: {
+      type:      BigFloat,
+      converter: HumanFileSize,
+    }
+  )
+end
+
+ce = ConverterExample.from_yaml("file_size: \"1 KB\"")
+ce.to_yaml => "1000 B" # always writes as bytes at the moment
 ```
-
-TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/human_file_size/fork )
+1. Fork it ( https://github.com/johnjansen/human_file_size.cr/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -34,4 +49,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) John Jansen - creator, maintainer
+- [johnjansen](https://github.com/johnjansen) John Jansen - creator, maintainer
