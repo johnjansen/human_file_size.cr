@@ -1,4 +1,4 @@
-# human_file_size
+# human_file_size.cr
 
 [![Build Status](https://travis-ci.org/johnjansen/human_file_size.cr.svg?branch=master)](https://travis-ci.org/johnjansen/human_file_size.cr)
 serializes and deserializes file sizes (in human readable format), within json or yaml mappings
